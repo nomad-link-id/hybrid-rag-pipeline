@@ -1,0 +1,22 @@
+{
+  "name": "hybrid-rag-pipeline",
+  "version": "1.0.0",
+  "description": "Production-grade RAG combining BM25 + Semantic Search + Reciprocal Rank Fusion",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest run"
+  },
+  "author": "Igor Eduardo",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.5.0",
+    "vitest": "^4.1.1"
+  }
+}
