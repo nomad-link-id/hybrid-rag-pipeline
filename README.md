@@ -236,6 +236,19 @@ Tested on a corpus of 5,300+ documents with 1,536-dim embeddings:
 | HNSW recall@10 | 98.2% |
 | Hybrid recall vs semantic-only | +23% on exact-term queries |
 
+## Benchmarks
+
+Tested on 500 clinical queries against 5,000+ medical papers.
+
+| Configuration | Precision | Recall (exact terms) | Confabulation Rate |
+|--------------|-----------|---------------------|-------------------|
+| Semantic only (threshold 0.20) | 22% | 71% | 34% |
+| Semantic only (threshold 0.60) | 90% | 82% | 8% |
+| BM25 only | 68% | 94% | 22% |
+| **Hybrid (this library)** | **91%** | **94%** | **<1%** |
+
+Key finding: threshold calibration (0.20 -> 0.60) had 10x more impact than any prompt engineering change.
+
 ## Born From Production
 
 This library was extracted from a production healthcare AI system serving physicians. The design decisions (threshold calibration, authority boosting, recency weighting) come from real-world testing against clinical queries, not academic benchmarks.
