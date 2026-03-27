@@ -253,6 +253,10 @@ Key finding: threshold calibration (0.20 -> 0.60) had 10x more impact than any p
 
 This library was extracted from a production healthcare AI system serving physicians. The design decisions (threshold calibration, authority boosting, recency weighting) come from real-world testing against clinical queries, not academic benchmarks.
 
+## Part of the LLM Trust Layer
+
+This module is the retrieval component of [llm-trust-layer](https://github.com/nomad-link-id/llm-trust-layer) -- an end-to-end pipeline combining smart routing, hybrid RAG, and citation verification.
+
 ## License
 
 MIT
