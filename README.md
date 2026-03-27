@@ -177,6 +177,20 @@ const results = await rag.search('What is the treatment?', {
 });
 ```
 
+### Multi-turn Enrichment Example
+
+A real-world conversation showing how enrichment resolves ambiguous follow-ups:
+
+```typescript
+// Turn 1: "What is heart failure?" -> searches for "heart failure" (clear intent)
+// Turn 2: "How is it diagnosed?" -> without enrichment, "it" has no referent
+// Turn 3: "What about the treatment?" -> even more ambiguous
+
+// With contextWindow: 2, turn 3 becomes:
+// "How is it diagnosed? What about the treatment?" + context from turn 2
+// The enriched query retrieves heart failure treatment docs, not generic results
+```
+
 ## How RRF Works
 
 Reciprocal Rank Fusion combines multiple ranked lists into a single ranking:
