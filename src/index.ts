@@ -110,6 +110,8 @@ export class HybridRAG {
     query: string,
     options?: { conversationContext?: string[]; contextWindow?: number }
   ): Promise<SearchResult[]> {
+    if (!query || query.trim().length === 0) return [];
+
     // Contextual query enrichment for follow-ups
     const enrichedQuery = this.enrichQuery(query, options?.conversationContext, options?.contextWindow);
 

@@ -191,6 +191,15 @@ describe('applyRecencyWeighting', () => {
   });
 });
 
+// ─── Empty Query Guard ────────────────────────────────────────────────────────
+
+describe('empty query handling', () => {
+  it('returns empty results for empty string in enrichQuery', () => {
+    expect(enrichQuery('')).toBe('');
+    expect(enrichQuery('  ')).toBe('  ');
+  });
+});
+
 // ─── Query Enrichment ─────────────────────────────────────────────────────────
 
 describe('enrichQuery', () => {
