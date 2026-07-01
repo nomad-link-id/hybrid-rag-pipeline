@@ -1,5 +1,8 @@
 # Experiments
 
-| # | Question | Result | Drove |
-|---|---|---|---|
-| 001 | What similarity threshold minimizes confabulation without killing recall? | 0.60 chosen over 0.20 | ADR-0002 |
+Hypotheses, methods, and results. Exploratory work is labeled as such;
+reproducible results are published with their methodology.
+
+| # | Question | Status |
+|---|---|---|
+| 001 | How does the similarity threshold affect precision/recall? | Re-running for reproducible metrics |

@@ -1,43 +1,42 @@
-# EXP-001: Similarity threshold calibration
+# EXP-001 — Threshold Calibration
 
-**Status:** ✅ adopted (drove ADR-0002)
+## Question
 
-## Hypothesis
+How does the dense-retrieval similarity threshold affect precision and recall
+for Portuguese clinical queries?
 
-Raising the dense-retrieval similarity floor from the common ~0.20 default to a
-stricter value would sharply reduce irrelevant chunks reaching the LLM (and thus
-confabulation) without a proportional loss in recall, because BM25 covers the
-exact-term queries where dense retrieval is weakest.
+## Why this matters
 
-## Setup
+Threshold selection directly affects retrieval quality and, downstream, the
+grounding of generated answers. A floor set too low admits weakly-related
+chunks that invite confabulation; set too high, it discards useful context.
+This single parameter tends to dominate other tuning.
 
-- Retrieval: this pipeline (BM25 + dense + RRF)
-- Variable: `similarityThreshold` on the dense retriever
-- TODO: Document the query set (size, how queries were selected/labeled) used
-  for calibration.
-- TODO: Document the corpus (size, domain) the calibration ran against.
+## Status
 
-## Method
+Re-running the experiment to publish reproducible metrics.
 
-Swept the dense threshold and compared retrieval quality between the permissive
-default and the stricter floor, holding everything else constant.
+The original threshold calibration was performed during iterative development
+and was not captured in a reproducible format. Rather than reconstructing
+historical numbers from memory, this experiment is being repeated with a
+documented methodology and a versioned dataset.
 
-- TODO: Add the exact thresholds swept and the metric used (precision / recall /
-  confabulation rate — define how confabulation was measured).
+## Current observation
 
-## Results
+The production configuration uses the calibrated threshold derived during
+development (the constructor default, 0.60). The purpose of this experiment is
+to publish the methodology and measurements behind that decision — not to
+justify it after the fact.
 
-- TODO: Add the results table (threshold vs. metric) from the calibration run.
-  The headline finding to document: threshold choice dominated other tuning —
-  moving the floor mattered more than prompt-level changes.
+## Next step
 
-## Conclusion
+Publish, as a self-contained and reproducible artifact:
 
-Adopted a default floor of 0.60 (ADR-0002). The floor is exposed as config
-because the optimal value is corpus- and embedding-model-dependent; 0.60 is the
-default, not a universal constant.
+- the evaluation dataset (versioned)
+- the evaluation protocol
+- the metrics (precision / recall across thresholds)
+- the analysis
 
-## What surprised me
+## Related
 
-TODO: Note what was unexpected — e.g. how large the confabulation swing was
-relative to how small the parameter change looked.
+- ADR-0002 records the decision this experiment documents.

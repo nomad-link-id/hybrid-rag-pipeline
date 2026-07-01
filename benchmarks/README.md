@@ -1,19 +1,28 @@
 # Benchmarks
 
-Reproducible measurements for this pipeline. Methodology first, numbers second —
-a benchmark without its method is marketing.
+## Purpose
 
-## Methodology
+Reproducible benchmark suites for the retrieval pipeline. Every published
+number should regenerate from scratch with a documented method and environment.
 
-TODO: Document hardware (CPU, RAM), Postgres + pgvector versions, embedding
-model, corpus size, and the exact command to reproduce.
+## Status
 
-## Results
+The benchmark harness is being standardized so that every result can be
+reproduced independently.
 
-TODO: Add the results table. Report latency percentiles (p50/p95), not just a
-mean, and state the corpus the numbers were measured on.
+The initial measurements were taken during active product development, coupled
+to production-specific assumptions. Before publishing performance numbers, the
+harness is being isolated into a standalone engineering artifact with a fixed
+dataset and a documented environment.
 
-## Reproduce
+## Planned suites
 
-TODO: Add `./reproduce.sh` (or the exact commands) so any reader can regenerate
-every number here.
+- Retrieval latency (percentiles, not means)
+- BM25 vs. dense vs. hybrid recall by query type
+- Fusion strategy comparison
+- Threshold calibration (see experiments/EXP-001)
+
+## Principle
+
+A benchmark without its methodology is marketing. Numbers are published here
+only alongside the environment and command that reproduce them.
